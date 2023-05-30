@@ -2,10 +2,10 @@ const mysql = require('mysql2/promise');
 require('dotenv').config()
 
 const {
-  DB_HOSTNAME: host,
-  DB_USERNAME: user,
-  DB_PASSWORD: password,
-  DB_DATABASE: database
+  HOSTNAME: host,
+  USERNAME: user,
+  PASSWORD: password,
+  DATABASE: database
 } = process.env;
 
 const connectDb = async (req, res, next) => {
@@ -20,7 +20,7 @@ const connectDb = async (req, res, next) => {
 }
 
 const getProduct = (sku) => `
-  SELECT BIN_TO_UUID(product_id) as product_id, name, price, stock, BIN_TO_UUID(factory_id) AS factory_id, BIN_TO_UUID(ad_id) AS ad_id
+  SELECT BIN_TO_UUID(product_id) as product_id, name, price, stock, BIN_TO_UUID(factory_id), BIN_TO_UUID(ad_id)
   FROM product
   WHERE sku = "${sku}"
 `

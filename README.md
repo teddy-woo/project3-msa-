@@ -1,3 +1,10 @@
+## 정리
+- 제시된 목표를 다음과 같은 아키텍처를 구상하여 완료하였다.
+
+![프로젝트3](https://user-images.githubusercontent.com/76501289/178673401-9c7c731f-daa1-414f-8613-f23a65eb51e6.png)
+
+
+
 ## 목표
 - 메시지 큐의 Pub/Sub 패턴과 Producer/Consumer 패턴의 차이를 이해한다
 - DB와 서버와의 통신이 가능하도록 연결한다

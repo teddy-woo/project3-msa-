@@ -6,40 +6,11 @@ provider:
   runtime: nodejs14.x
   region: ap-northeast-2
 
-resources:
-  Resources:
-    StockEmptyTopic:
-      Type: AWS::SNS::Topic
-      Properties:
-        TopicName: stock_empty
-
-    StockQueue:
-      Type: AWS::SQS::Queue
-      Properties:
-        QueueName: stock_queue
-        RedrivePolicy:
-          deadLetterTargetArn:
-            Fn::GetAtt:
-              - StockQueueDLQ
-              - Arn
-          maxReceiveCount: 5
-
-    StockQueueDLQ:
-      Type: AWS::SQS::Queue
-      Properties:
-        QueueName: stock_queue_dlq
-
 functions:
   api:
     handler: handler.handler
     events:
       - httpApi: '*'
 
-  stock_lambda:
-    handler: stock_lambda.handler
-    events:
-      - sqs:
-          arn:
-            Fn::GetAtt:
-              - StockQueue
-              - Arn
+plugins:
+  - serverless-dotenv-plugin

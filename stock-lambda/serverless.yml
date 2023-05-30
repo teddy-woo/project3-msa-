@@ -1,4 +1,5 @@
-service: stock-increase-lambda
+service: stock-lambda
+
 frameworkVersion: '3'
 
 provider:
@@ -7,10 +8,11 @@ provider:
   region: ap-northeast-2
 
 functions:
-  api:
+  stock:
     handler: handler.handler
     events:
-      - httpApi: '*'
+      - sqs: arn:aws:sqs:ap-northeast-2:824317260845:stock_queue
 
 plugins:
-  - serverless-dotenv-plugin
+  - serverless-dotenv-plugin       
+    
